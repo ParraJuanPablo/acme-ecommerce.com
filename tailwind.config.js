@@ -12,11 +12,14 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                primary: '#17263E',
+                secondary: '#A3B6D6'
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
     },
-
     plugins: [forms],
 };
