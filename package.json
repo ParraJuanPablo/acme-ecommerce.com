@@ -7,7 +7,7 @@
         "prettier": "prettier"
     },
     "devDependencies": {
-        "@headlessui/react": "^1.4.2",
+        "@headlessui/react": "^1.7.18",
         "@inertiajs/react": "^1.0.0",
         "@prettier/plugin-php": "0.14.3",
         "@tailwindcss/forms": "^0.5.3",
@@ -24,6 +24,8 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.1.1",
+        "country-flag-icons": "^1.5.9",
+        "react-world-flags": "^1.6.0",
         "tw-elements-react": "^1.0.0-alpha2"
     }
 }
