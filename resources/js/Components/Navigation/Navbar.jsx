@@ -1,13 +1,27 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+    Bars3Icon,
+    XMarkIcon,
+    UserCircleIcon,
+    ShoppingCartIcon,
+    UserIcon,
+    Cog6ToothIcon,
+    ArrowRightStartOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 import ApplicationLogo from "../ApplicationLogo";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import SearchInputFull from "../SearchInputFull";
 import SearchInputButton from "../SearchInputButton";
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
 
-export default function Navbar(auth) {
+export default function Navbar({ auth, isLogged }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(" ");
+    }
 
     return (
         <>
@@ -17,19 +31,107 @@ export default function Navbar(auth) {
                     aria-label="Global"
                 >
                     <div className="flex lg:flex-1">
-                        <ApplicationLogo />
+                        <div className="h-16">
+                            <ApplicationLogo />
+                        </div>
                     </div>
                     <div className="hidden lg:flex lg:gap-x-12 w-1/2">
                         <SearchInputFull className="w-full" />
                     </div>
                     <div className="flex flex-1 items-center justify-end gap-x-6">
-                        {auth.user ? (
-                            <Link
-                                href={route("dashboard")}
-                                className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                            >
-                                Dashboard
-                            </Link>
+                        {isLogged == true ? (
+                            <>
+                                <Menu
+                                    as="div"
+                                    className="hidden pt-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
+                                >
+                                    <div>
+                                        <Menu.Button>
+                                            <UserCircleIcon className="h-8" />
+                                        </Menu.Button>
+                                    </div>
+
+                                    <Transition
+                                        as={Fragment}
+                                        enter="transition ease-out duration-100"
+                                        enterFrom="transform opacity-0 scale-95"
+                                        enterTo="transform opacity-100 scale-100"
+                                        leave="transition ease-in duration-75"
+                                        leaveFrom="transform opacity-100 scale-100"
+                                        leaveTo="transform opacity-0 scale-95"
+                                    >
+                                        <Menu.Items className="absolute right-28 z-10 mt-2 w-40 divide-y divide-gray-200 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <div className="py-1">
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <Link
+                                                            href="#"
+                                                            className={classNames(
+                                                                active
+                                                                    ? "bg-gray-100 text-gray-900"
+                                                                    : "text-gray-700",
+                                                                "block px-4 py-2 text-sm"
+                                                            )}
+                                                        >
+                                                            <div className="flex inline-flex gap-x-2">
+                                                                <UserIcon className="h-5" />{" "}
+                                                                Account
+                                                            </div>
+                                                        </Link>
+                                                    )}
+                                                </Menu.Item>
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <Link
+                                                            href="#"
+                                                            className={classNames(
+                                                                active
+                                                                    ? "bg-gray-100 text-gray-900"
+                                                                    : "text-gray-700",
+                                                                "block px-4 py-2 text-sm"
+                                                            )}
+                                                        >
+                                                            <div className="flex inline-flex gap-x-2">
+                                                                <Cog6ToothIcon className="h-5" />{" "}
+                                                                Settings
+                                                            </div>
+                                                        </Link>
+                                                    )}
+                                                </Menu.Item>
+                                            </div>
+                                            <div className="py-1">
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <Link
+                                                            href={route(
+                                                                "logout"
+                                                            )}
+                                                            method="post"
+                                                            className={classNames(
+                                                                active
+                                                                    ? "bg-gray-100 text-gray-900"
+                                                                    : "text-gray-700",
+                                                                "block px-4 py-2 text-sm"
+                                                            )}
+                                                        >
+                                                            <div className="flex inline-flex gap-x-2">
+                                                                <ArrowRightStartOnRectangleIcon className="h-5" />{" "}
+                                                                Log Out
+                                                            </div>
+                                                        </Link>
+                                                    )}
+                                                </Menu.Item>
+                                            </div>
+                                        </Menu.Items>
+                                    </Transition>
+                                </Menu>
+                                <Link
+                                    href="/"
+                                    className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
+                                >
+                                    <ShoppingCartIcon className="h-8" />
+                                </Link>
+                            </>
                         ) : (
                             <>
                                 <Link
@@ -69,7 +171,9 @@ export default function Navbar(auth) {
                         <div className="flex justify-between items-center gap-x-6">
                             <a href="#" className="-m-1.5 p-1.5">
                                 <span className="sr-only">Acme</span>
-                                <ApplicationLogo />
+                                <div className="h-16">
+                                    <ApplicationLogo />
+                                </div>
                             </a>
                             <button
                                 type="button"
@@ -86,13 +190,54 @@ export default function Navbar(auth) {
                         <div className="mt-6 flow-root">
                             <div className="-my-6 divide-y divide-gray-500/10">
                                 <div className="py-6">
-                                    {auth.user ? (
-                                        <Link
-                                            href={route("dashboard")}
-                                            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                            Dashboard
-                                        </Link>
+                                    {isLogged == true ? (
+                                        <>
+                                            <Link
+                                                href="/"
+                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            >
+                                                <div className="flex inline-flex gap-x-2">
+                                                    <UserIcon className="h-8" />{" "}
+                                                    <span className="pt-0.5">
+                                                        Account
+                                                    </span>
+                                                </div>
+                                            </Link>{" "}
+                                            <Link
+                                                href="/"
+                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            >
+                                                <div className="flex inline-flex gap-x-2">
+                                                    <Cog6ToothIcon className="h-8" />{" "}
+                                                    <span className="pt-0.5">
+                                                        Settings
+                                                    </span>
+                                                </div>
+                                            </Link>{" "}
+                                            <Link
+                                                href="/"
+                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            >
+                                                <div className="flex inline-flex gap-x-2">
+                                                    <ShoppingCartIcon className="h-8" />{" "}
+                                                    <span className="pt-0.5">
+                                                        Cart
+                                                    </span>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                href={route("logout")}
+                                                method="post"
+                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            >
+                                                <div className="flex inline-flex gap-x-2">
+                                                    <ArrowRightStartOnRectangleIcon className="h-8" />{" "}
+                                                    <span className="pt-0.5">
+                                                        Logout
+                                                    </span>
+                                                </div>
+                                            </Link>
+                                        </>
                                     ) : (
                                         <>
                                             <Link
