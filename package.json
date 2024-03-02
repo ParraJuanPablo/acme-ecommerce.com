@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.1.1",
+        "@tailwindcss/aspect-ratio": "^0.4.2",
         "country-flag-icons": "^1.5.9",
         "react-world-flags": "^1.6.0",
         "tw-elements-react": "^1.0.0-alpha2"
