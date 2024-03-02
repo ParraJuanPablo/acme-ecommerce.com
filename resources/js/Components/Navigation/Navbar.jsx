@@ -16,7 +16,7 @@ import SearchInputButton from "../SearchInputButton";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-export default function Navbar({auth, isLogged }) {
+export default function Navbar({ auth, isLogged }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     function classNames(...classes) {
@@ -191,12 +191,53 @@ export default function Navbar({auth, isLogged }) {
                             <div className="-my-6 divide-y divide-gray-500/10">
                                 <div className="py-6">
                                     {isLogged == true ? (
-                                        <Link
-                                            href={route("dashboard")}
-                                            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                            Dashboard
-                                        </Link>
+                                        <>
+                                            <Link
+                                                href="/"
+                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            >
+                                                <div className="flex inline-flex gap-x-2">
+                                                    <UserIcon className="h-8" />{" "}
+                                                    <span className="pt-0.5">
+                                                        Account
+                                                    </span>
+                                                </div>
+                                            </Link>{" "}
+                                            <Link
+                                                href="/"
+                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            >
+                                                <div className="flex inline-flex gap-x-2">
+                                                    <Cog6ToothIcon className="h-8" />{" "}
+                                                    <span className="pt-0.5">
+                                                        Settings
+                                                    </span>
+                                                </div>
+                                            </Link>{" "}
+                                            <Link
+                                                href="/"
+                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            >
+                                                <div className="flex inline-flex gap-x-2">
+                                                    <ShoppingCartIcon className="h-8" />{" "}
+                                                    <span className="pt-0.5">
+                                                        Cart
+                                                    </span>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                href={route("logout")}
+                                                method="post"
+                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            >
+                                                <div className="flex inline-flex gap-x-2">
+                                                    <ArrowRightStartOnRectangleIcon className="h-8" />{" "}
+                                                    <span className="pt-0.5">
+                                                        Logout
+                                                    </span>
+                                                </div>
+                                            </Link>
+                                        </>
                                     ) : (
                                         <>
                                             <Link
