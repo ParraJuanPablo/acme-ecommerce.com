@@ -7,11 +7,6 @@ import { useEffect } from 'react'
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
-    useEffect(() => {
-      console.log(auth.user);
-    }, [auth, ]);
-    
-
     return (
         <>
             <Head title="Home" />
