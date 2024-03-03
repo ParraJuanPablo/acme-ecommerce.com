@@ -19,6 +19,9 @@ export default {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
+            gridTemplateRows: {
+                "[auto,auto,1fr]": "auto auto 1fr",
+            },
         },
     },
     plugins: [forms, require("@tailwindcss/aspect-ratio")],
