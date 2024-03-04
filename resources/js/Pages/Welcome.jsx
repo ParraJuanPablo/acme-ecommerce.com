@@ -1,3 +1,4 @@
+import Cart from "@/Components/Ecommerce/Cart";
 import CategoriesSection from "@/Components/Ecommerce/CategoriesSection";
 import HotSection from "@/Components/Ecommerce/HotSection";
 import PromoSection from "@/Components/Ecommerce/PromoSection";
