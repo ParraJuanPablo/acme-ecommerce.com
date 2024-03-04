@@ -13,11 +13,13 @@ import ApplicationLogo from "../ApplicationLogo";
 import { Link, useForm } from "@inertiajs/react";
 import SearchInputFull from "../SearchInputFull";
 import SearchInputButton from "../SearchInputButton";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
+import Cart from "../Ecommerce/Cart";
 
 export default function Navbar({ auth, isLogged }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(" ");
@@ -125,12 +127,12 @@ export default function Navbar({ auth, isLogged }) {
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>
-                                <Link
-                                    href="/"
+                                <button
+                                    onClick={() => setOpen(true)}
                                     className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900"
                                 >
                                     <ShoppingCartIcon className="h-8" />
-                                </Link>
+                                </button>
                             </>
                         ) : (
                             <>
@@ -215,7 +217,7 @@ export default function Navbar({ auth, isLogged }) {
                                                 </div>
                                             </Link>{" "}
                                             <Link
-                                                href="/"
+                                                onClick={() => setOpen(false)}
                                                 className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                             >
                                                 <div className="flex inline-flex gap-x-2">
@@ -286,6 +288,7 @@ export default function Navbar({ auth, isLogged }) {
                     </div>
                 </div>
             </header>
+            <Cart open={open} setOpen={() => setOpen(false)}/>
         </>
     );
 }
