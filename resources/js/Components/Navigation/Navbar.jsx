@@ -67,7 +67,7 @@ export default function Navbar({ auth, isLogged }) {
                                                 <Menu.Item>
                                                     {({ active }) => (
                                                         <Link
-                                                            href="#"
+                                                            href="/profile"
                                                             className={classNames(
                                                                 active
                                                                     ? "bg-gray-100 text-gray-900"
@@ -78,24 +78,6 @@ export default function Navbar({ auth, isLogged }) {
                                                             <div className="flex inline-flex gap-x-2">
                                                                 <UserIcon className="h-5" />{" "}
                                                                 Account
-                                                            </div>
-                                                        </Link>
-                                                    )}
-                                                </Menu.Item>
-                                                <Menu.Item>
-                                                    {({ active }) => (
-                                                        <Link
-                                                            href="#"
-                                                            className={classNames(
-                                                                active
-                                                                    ? "bg-gray-100 text-gray-900"
-                                                                    : "text-gray-700",
-                                                                "block px-4 py-2 text-sm"
-                                                            )}
-                                                        >
-                                                            <div className="flex inline-flex gap-x-2">
-                                                                <Cog6ToothIcon className="h-5" />{" "}
-                                                                Settings
                                                             </div>
                                                         </Link>
                                                     )}
@@ -195,24 +177,13 @@ export default function Navbar({ auth, isLogged }) {
                                     {isLogged == true ? (
                                         <>
                                             <Link
-                                                href="/"
+                                                href="/profile"
                                                 className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                             >
                                                 <div className="flex inline-flex gap-x-2">
                                                     <UserIcon className="h-8" />{" "}
                                                     <span className="pt-0.5">
                                                         Account
-                                                    </span>
-                                                </div>
-                                            </Link>{" "}
-                                            <Link
-                                                href="/"
-                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                                            >
-                                                <div className="flex inline-flex gap-x-2">
-                                                    <Cog6ToothIcon className="h-8" />{" "}
-                                                    <span className="pt-0.5">
-                                                        Settings
                                                     </span>
                                                 </div>
                                             </Link>{" "}

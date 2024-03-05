@@ -3,11 +3,11 @@ import DetailsProduct from "@/Components/Ecommerce/ProductDetail/DetailsProduct"
 import Layout from "@/Layouts/Layout";
 import {  Head } from "@inertiajs/react";
 
-export default function ProductList({ auth, laravelVersion, phpVersion }) {
+export default function ProductDetail({ auth }) {
 
     return (
         <>
-            <Head title="Home" />
+            <Head title="Product" />
             <Layout auth={auth}>
                 <CTAProduct />
                 <DetailsProduct />
